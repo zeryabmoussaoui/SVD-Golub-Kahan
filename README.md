@@ -3,7 +3,7 @@ Singular Value computation using Golub-Kahan method
 
 ## What is this ?
 
-A m-file which implements the Golub-Kahan method for SVD computation, i did it when i was an undergraduate students and found it useful to share.
+A m-file which implements the Golub-Kahan method for SVD computation, i did it when i was an undergraduate student and found it useful to share.
 
 ## What is required ?
 
