@@ -16,4 +16,4 @@ To use it, just download [svd2.m](./svd2.m) file and execute it on your m-file i
 
 The method is described in the following article : [GOLUB-KAHAN-1965](./GOLUB-KAHAN-1965.pdf)
 
-A temporary report can be found : [Report](./report.odt) but has not been yet translated from French.
+A (very old) temporary report can be found here : [Report](./report.odt) but has not been yet translated from French.
