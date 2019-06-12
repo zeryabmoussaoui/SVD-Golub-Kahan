@@ -1,5 +1,5 @@
 # SVD-Golub-Kahan
-Singular Value computation using Golub-Kahan method
+Singular Value computation using Golub-Kahan method, an efficient and real-time method. 
 
 ## What is this ?
 
