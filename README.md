@@ -10,6 +10,8 @@ A m-file which implements the Golub-Kahan method for SVD computation, i did it w
 It's compatible with all m-file interpreter (Matlab, GNU Octave, Scilab).
 However, GNU Octave is recommended. It's free, open-source and native in many Linux distibutions.
 
+To use it, just download [svd2.m](./svd2.m) file and execute it on your m-file interpreter.
+
 ## How does it work ?
 
 The method is described in the following article : [GOLUB-KAHAN-1965](./GOLUB-KAHAN-1965.pdf)
