@@ -1,5 +1,5 @@
 %svd2 - returns the singular values of matrix A in descending order using Kahan-Golub method
-% Reference : Golub-Kahan-1965 Calculating the singular values and pseudo-inverse of a matrix
+% Reference : Golub-Kahan-1965Â Calculating the singular values and pseudo-inverse of a matrix
 %
 % Syntax:  [sv] = svd2(A)
 %
@@ -12,7 +12,6 @@
 % Example: 
 %    A=[3 2;1 4;0.5 0.5];
 %    s=svd2(A);
-%    s=
 %
 % Other m-files required: none
 % Subfunctions: sturm
@@ -40,6 +39,7 @@ if (m < n)
 end
  
 B=A;
+
 
 %% 1.2 - Householder Transformation
 % TODO : Case null element in diagional   
@@ -95,7 +95,8 @@ end
 K(l,l) =  s(l)^2 + t(l-1)^2;
 K(l-1,l) = s(l-1)*t(l-1);
  
- 
+
+
 %%% 4 - Compute eigenvalues of K using Strum method
  
 %% 4.0 - Define Sturm function to compute sign change
@@ -114,25 +115,28 @@ p=ones(n+1,1);
 s=ones(n+1,1);
 p(1)=1;
 s(1)=1;
-for i=2:n+1
-   if (i==2)
-       p(i) = M(1,1) - x;
+for j=2:n+1 % Warning : j shared with the main
+   if (j==2)
+       p(j) = M(1,1) - x;
     else
-        d=M(i-1,i-1);
-        e=M(i-1,i-2);
-        p(i) = (d - x)*p(i-1) - (e^2)*p(i-2);
+        d=M(j-1,j-1);
+        e=M(j-1,j-2);
+        p(j) = (d - x)*p(j-1) - (e^2)*p(j-2);
    end
-   if (p(i)==0)
-       s(i)=s(i-1);
+   if (p(j)==0)
+       s(j)=s(j-1);
    else
-       s(i)=sign(p(i));
+       s(j)=sign(p(j));
    end
    
-    if ( s(i)*s(i-1) == -1)
+    if ( s(j)*s(j-1) == -1)
         nb=nb+1;
     end
 end
- 
+
+end 
+
+
 %% 4.1 - Look for an [a,b] interval with all eingenvalues
  
 % Define diagonals 
@@ -158,14 +162,15 @@ L=[a b];
  
 R=zeros(l,2);  % Interval with only one eigenvalue
 N=0;
+
 while ( N ~= l )
     N=0;
     R=zeros(l,2);
     for i=2:length(L)
-        neig=strum(K,L(i)) - strum(K,L(i-1));
+        neig=strum(K,L(i))-strum(K,L(i-1));             
         if(neig > 1)
             med=(L(i)+L(i-1))/2;
-            L=[L med];
+            L=[L med];            
         elseif( neig ==1)
             N=N+1;
             R(N,:)=[L(i-1) L(i)];
@@ -175,6 +180,7 @@ while ( N ~= l )
     end
     L=sort(L);
 end
+
 
 % Refine by bissection
  
@@ -192,12 +198,13 @@ eps=10^(-2);
             else % no eigenvalue
                R(i,2)=lmid; 
             end 
+
          delta=norm( (R(i,2)-R(i,1))./( R(i,2)+R(i,1) ) );
         end
    end
    eigK=(R(:,1)+R(:,2))/2; % Eigenvalues of K
    sv=sort(sqrt(eigK));
-   
+ 
 end
 
 %------------- END OF CODE --------------
